@@ -1,7 +1,8 @@
-public class App {
+import java.util.Scanner;
+public class Main {
     public static void main(String[] args){
         InOut inout = new InOut();
-		Hero hero = new Hero ("Hero1", 0, 0, 3, 5, 1, 2, 2);
+		Hero hero = new Hero ("Hero1", 0, 0, 3, 5, 1, 2, 2, true);
 		Scanner in = new Scanner (System.in);
 		inout.start();
 		System.out.println("Hero1 X : " + hero.getX());

@@ -2,8 +2,8 @@ public class Monster extends Character {
 	String power;
 	private boolean willAttack = true;
 	
-	public Monster (String power, String name, int posX, int posY, int velocity, int life, int defense, int attack, int exp) {
-		super (name, posX, posY, velocity, life, defense, attack, exp);
+	public Monster (String power, String name, int posX, int posY, int velocity, int life, int defense, int attack, int exp, boolean alive) {
+		super (name, posX, posY, velocity, life, defense, attack, exp, alive);
 	}
 	
 	public String getPower() {

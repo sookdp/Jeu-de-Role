@@ -44,7 +44,7 @@ public class InOut {
 			boolean validInput;
 			do {
 				System.out.println("Où voulez-vous aller ?\n" +
-						"1  : En haut\n" + "2  : En bas\n" + "3  : En À gauche\n" + "4  : À droite\n");
+						"1  : En haut\n" + "2  : En bas\n" + "3  : À gauche\n" + "4  : À droite\n");
 				int move = in.nextInt();
 				validInput = true;
 				switch (move) {

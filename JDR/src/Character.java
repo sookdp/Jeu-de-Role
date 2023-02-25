@@ -7,8 +7,9 @@ public class Character {
 	private int defense;
 	private int attack;
 	private int exp;
+	private boolean alive = true;
 	
-	public Character (String name, int posX, int posY, int velocity, int life, int defense, int attack, int exp) {
+	public Character (String name, int posX, int posY, int velocity, int life, int defense, int attack, int exp, boolean alive) {
 		this.name = name;
 		this.posX = posX;
 		this.posY = posY;
@@ -17,6 +18,7 @@ public class Character {
 		this.defense = defense;
 		this.attack = attack;
 		this.exp = exp;
+		this.alive = alive;
 	}
 	public String getName () {
 		return name;
@@ -41,6 +43,9 @@ public class Character {
 	}
 	public int getExp () {
 	   	 return exp;
+	}
+	public boolean getIsAlive () {
+		return alive;
 	}
 	
 	public void setName (String name) {
@@ -67,6 +72,8 @@ public class Character {
 	public void setExp (int exp) {
 		this.exp = exp;
 	}
-
+	public void setIsAlive (boolean alive){
+		this.alive = alive;
+	}
 
 }
