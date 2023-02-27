@@ -1,9 +1,5 @@
 import java.util.Scanner;
 
-enum Position_Choice {
-	HAUT, BAS, GAUCHE, DROITE;
-}
-
 public class InOut {
 	public void start () {
 		boolean game = false;
@@ -14,6 +10,7 @@ public class InOut {
 								"-------------------------------------------------------------------------------------------\n");
 			System.out.println("Es-tu prêt à les affronter ? Oui ou Non ?");
 			String answer = input.next();
+			input.close();
 			if (answer.equals("Oui")) {
 				System.out.println("-----------------------------------------------------------------------------------------\n" + 
 									"Tu as fait le bon choix ! Je vais maintenant de t'expliquer le principe du jeu.\n"+
@@ -37,36 +34,108 @@ public class InOut {
 		}
 			
 	}
-	public void playerMove(Scanner in, Hero hero) {
-		boolean choiceMove = false;
-		Position_Choice positionChoice;
-		while (!choiceMove) {
+	
+	//méthode playerChoice pour demander s'il veut se déplacer ou consulter son inventaire
+	public void playerChoice(Scanner in, Hero hero, Game game){
+		boolean playerChoice = false;
+		while(!playerChoice) {
+			boolean validInput;
+			do{
+				System.out.println("Que voulez vous faire ?\n" +
+									"---------------------------------------------------------------------------------------\n"+
+									"1  : Vous déplacer\n" + "2  : Consulter votre inventaire\n" +
+									"---------------------------------------------------------------------------------------");
+				int choice = in.nextInt();
+				validInput = true;
+				switch (choice) {
+					case 1:
+						playerChoice = true;
+						game.playerMove(in, hero);
+						break;
+					case 2:
+						playerChoice = true;
+						hero.viewAll();
+						break;
+					default:
+						System.out.println("---------------------------------------------------------------------------------------\n"+
+											"Je n'ai pas bien saisi...\n" +
+											"---------------------------------------------------------------------------------------");
+						validInput = false;
+						break;
+				}
+			}while(!validInput);
+		}
+	}
+	// crossChest
+	public void crossChest(Scanner in, Hero hero, Chest chest) {
+		boolean playerChoice = false;
+		while(!playerChoice) {
+			boolean validInput;
+			do{
+				System.out.println("Que voulez vous faire ?\n" +
+									"---------------------------------------------------------------------------------------\n"+
+									"1  : Regarder le contenu du coffre\n" + "2  : Partir\n" +
+									"---------------------------------------------------------------------------------------");
+				int choice = in.nextInt();
+				validInput = true;
+				switch (choice) {
+					case 1:
+						playerChoice = true;
+						chest.viewContent();
+						System.out.println("Que voulez vous faire ?\n" +
+									"---------------------------------------------------------------------------------------\n"+
+									"1  : Prendre l'objet\n" + "2  : Le laisser\n" +
+									"---------------------------------------------------------------------------------------");
+						int takeChoice = in.nextInt();
+						switch (takeChoice) {
+							case 1:
+								playerChoice = true;
+								hero.takeObject(chest.getContentList(), chest);
+								break;
+							case 2:
+								playerChoice = true;
+								break;
+						
+							default:
+								System.out.println("---------------------------------------------------------------------------------------\n"+
+													"Je n'ai pas bien saisi...\n" +
+													"---------------------------------------------------------------------------------------");
+								validInput = false;
+								break;
+						}
+						break;
+					case 2:
+						playerChoice = true;
+						break;
+					default:
+						System.out.println("---------------------------------------------------------------------------------------\n"+
+											"Je n'ai pas bien saisi...\n" +
+											"---------------------------------------------------------------------------------------");
+						validInput = false;
+						break;
+				}
+			}while(!validInput);
+		}
+	}
+	//takeWeapon
+	public void takeWeapon(Scanner in, Hero hero){
+		boolean choice = false;
+		while (!choice) {
 			boolean validInput;
 			do {
-				System.out.println("Où voulez-vous aller ?\n" +
-						"1  : En haut\n" + "2  : En bas\n" + "3  : À gauche\n" + "4  : À droite\n");
-				int move = in.nextInt();
+				hero.viewWeapon();
+				System.out.println("Quelle arme voulez-vous prendre ?\n" +
+						"1  : Elément 1\n" + "2  : Elément 2\n");
+				int weaponChoice = in.nextInt();
 				validInput = true;
-				switch (move) {
-				case 1 : 
-					hero.up();
-					positionChoice = Position_Choice.HAUT;
-					validInput = true;
+				switch (weaponChoice) {
+				case 1 :
+					choice = true;
+					hero.takeWeapon(hero.weaponList.get(0));
 					break;
 				case 2 :
-					hero.down();
-					positionChoice = Position_Choice.BAS;
-					validInput = true;
-					break;
-				case 3 :
-					hero.left();
-					positionChoice = Position_Choice.GAUCHE;
-					validInput = true;
-					break;
-				case 4 :
-					hero.right();
-					positionChoice = Position_Choice.DROITE;
-					validInput = true;
+					choice = true;
+					hero.takeWeapon(hero.weaponList.get(1));
 					break;
 				default :
 					System.out.println("Merci de saisir une autre valeur");
@@ -76,5 +145,5 @@ public class InOut {
 			}while(!validInput);
 		}
 	}
-		
+	//finish
 }
