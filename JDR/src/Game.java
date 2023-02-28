@@ -28,7 +28,7 @@ public class Game {
     public Game(Hero hero, Character evil, Character enemy1, Character enemy2, Character enemy3,
             List<Character> enemyList, Chest chest1, Chest chest2, Chest chest3, Chest chest4, Chest chest5,
             List<Chest> chestList, Object weapon, Object artifact1, Object artifact2, Object potion1, Object potion2,
-            Scanner in, InOut inOut, Dungeon dungeon, boolean gameOver) {
+            Scanner in, InOut inOut, Dungeon dungeon) {
         this.hero = hero;
         this.evil = evil;
         this.enemy1 = enemy1;
@@ -49,7 +49,6 @@ public class Game {
         this.in = in;
         this.inOut = inOut;
         this.dungeon = dungeon;
-        this.gameOver = gameOver;
     }
 
     public Hero getHero() {
@@ -229,6 +228,7 @@ public class Game {
 						    "Je n'ai pas bien saisi...\n" +
 							"---------------------------------------------------------------------------------------");
     }
+    
     public Character whichEnemy(int posX, int posY, List<Character>enemyList) {
         Character enemy = new Character(null, posX, posY, posY, posY, posY, posX, posY);
         for (int i = 0; i < enemyList.size(); ++i){
@@ -260,9 +260,12 @@ public class Game {
 
         while(hero.getIsAlive() == false || enemy.getIsAlive() == false){
             int round = 1;
-            if(round / 2 == 0){
+            if(round % 2 == 0){
+                // demander au joueur s'il veut attaquer
+                fighter_2.attack(fighter_1);
                 fighter_2.getIsAlive();
                 fighter_1.setIsAlive(gameOver);
+
             }
             else{ 
                 fighter_1.attack(fighter_2);
@@ -297,7 +300,7 @@ public class Game {
 		while (!choiceMove) {
 			boolean validInput;
 			do {
-				System.out.println("Où voulez-vous aller ?\n" +
+				System.out.println( "Où voulez-vous aller ?\n" +
 									"---------------------------------------------------------------------------------------\n"+
 									"1  : En haut\n" + "2  : En bas\n" + "3  : À gauche\n" + "4  : À droite\n" +
 									"---------------------------------------------------------------------------------------\n");
@@ -315,8 +318,12 @@ public class Game {
                     }
                     hero.up();
                     System.out.println("---------------------------------------------------------------------------------------\n"+
-                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getX()+ "\n" +
+                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getY()+ "\n" +
                                         "---------------------------------------------------------------------------------------\n");
+                    System.out.println( "---------------------------------------------------------------------------------------\n"+
+                                        "Votre position sur la carte : \n" +
+                                        "---------------------------------------------------------------------------------------\n");
+                    dungeon.showMap(hero.getX(), hero.getY());
 					if (dungeon.isChest(hero.getX(), hero.getY()) == true) {
                         inOut.crossChest(in, hero, chest1);
                     }
@@ -336,17 +343,20 @@ public class Game {
 					break;
 				case 2 :
 					choiceMove = true;
-                    hero.down();
                     if(dungeon.isWall(hero.getX(), hero.getY() - 1) == true){
                         System.out.println("---------------------------------------------------------------------------------------\n"+
                                             "Vous êtes face à un mur, veuillez choisir autre direction\n" +
                                             "---------------------------------------------------------------------------------------\n");
                         break;
                     }
-                    hero.up();
+                    hero.down();
                     System.out.println("---------------------------------------------------------------------------------------\n"+
-                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getX()+ "\n" +
+                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getY()+ "\n" +
                                         "---------------------------------------------------------------------------------------\n");
+                    System.out.println( "---------------------------------------------------------------------------------------\n"+
+                                        "Votre position sur la carte : \n" +
+                                        "---------------------------------------------------------------------------------------\n");
+                    dungeon.showMap(hero.getX(), hero.getY());
 					if (dungeon.isChest(hero.getX(), hero.getY()) == true) {
                         inOut.crossChest(in, hero, chest1);
                     }
@@ -367,16 +377,20 @@ public class Game {
 					break;
 				case 3 :
 					choiceMove = true;
-					hero.left();
                     if(dungeon.isWall(hero.getX()-1, hero.getY()) == true){
                         System.out.println("---------------------------------------------------------------------------------------\n"+
                                             "Vous êtes face à un mur, veuillez choisir autre direction\n" +
                                             "---------------------------------------------------------------------------------------\n");
                         break;
                     }
+                    hero.left();
                     System.out.println("---------------------------------------------------------------------------------------\n"+
-                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getX()+ "\n" +
+                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getY()+ "\n" +
                                         "---------------------------------------------------------------------------------------\n");
+                    System.out.println( "---------------------------------------------------------------------------------------\n"+
+                                        "Votre position sur la carte : \n" +
+                                        "---------------------------------------------------------------------------------------\n");
+                    dungeon.showMap(hero.getX(), hero.getY());
 					if (dungeon.isChest(hero.getX(), hero.getY()) == true) {
                         inOut.crossChest(in, hero, chest1);
                     }
@@ -396,16 +410,20 @@ public class Game {
 					break;
 				case 4 :
 					choiceMove = true;
-					hero.right();
                     if(dungeon.isWall(hero.getX() + 1, hero.getY()) == true){
                         System.out.println("---------------------------------------------------------------------------------------\n"+
                                             "Vous êtes face à un mur, veuillez choisir autre direction\n" +
                                             "---------------------------------------------------------------------------------------\n");
                         break;
                     }
+                    hero.right();
                     System.out.println("---------------------------------------------------------------------------------------\n"+
-                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getX()+ "\n" +
+                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getY()+ "\n" +
                                         "---------------------------------------------------------------------------------------\n");
+                    System.out.println( "---------------------------------------------------------------------------------------\n"+
+                                        "Votre position sur la carte : \n" +
+                                        "---------------------------------------------------------------------------------------\n");
+                    dungeon.showMap(hero.getX(), hero.getY());
 					if (dungeon.isChest(hero.getX(), hero.getY()) == true) {
                         inOut.crossChest(in, hero, chest1);
                     }

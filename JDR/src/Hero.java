@@ -113,17 +113,23 @@ public class Hero extends Character{
 	public void viewWeapon() {
 		for (int i = 0; i < weaponList.size(); i++) {
 			// affichage à gérer 
-			System.out.println (weaponList.get(i).getDescription());
+			System.out.println( "---------------------------------------------------------------------------------------\n"+
+								"Vous avez en votre possession :\n" + weaponList.get(i).getDescription() +"\n" +
+								"---------------------------------------------------------------------------------------\n");
 		}
 	}
 	public void viewPotion() {
 		for (int i = 0; i < potionList.size(); i++) {
-			System.out.println (potionList.get(i).getDescription());
+			System.out.println( "---------------------------------------------------------------------------------------\n"+
+								"Vous avez en votre possession :\n" + potionList.get(i).getDescription() +"\n" +
+								"---------------------------------------------------------------------------------------\n");
 		}
 	}
 	public void viewArtifact() {
 		for (int i = 0; i < artifactList.size(); i++) {
-			System.out.println (artifactList.get(i).getDescription());
+			System.out.println( "---------------------------------------------------------------------------------------\n"+
+								"Vous avez en votre possession :\n" + artifactList.get(i).getDescription() +"\n" +
+								"---------------------------------------------------------------------------------------\n");
 		}
 	}
 	public void viewAll () {

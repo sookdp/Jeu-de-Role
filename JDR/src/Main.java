@@ -28,11 +28,11 @@ public class Main {
         chestList.add(chest5);
 
 		//Création des objets
-        Object weapon = new Object("Weapon", "Epée", 3, 0);
-        Object artifact1 = new Object("Artifact", "Casque : défense", 4, 7);
-        Object artifact2 = new Object("Artifact", "Gilet de protection : défense", 2, 8);
-        Object potion1 = new Object("Potion", "Potion de pouvoir", 2, 3);
-        Object potion2 = new Object("Potion", "Potion de pouvoir", 3, 9);
+        Object weapon = new Object("Weapon", "Epée");
+        Object artifact1 = new Object("Artifact", "Casque : défense");
+        Object artifact2 = new Object("Artifact", "Gilet de protection : défense");
+        Object potion1 = new Object("Potion", "Potion de pouvoir");
+        Object potion2 = new Object("Potion", "Potion de pouvoir");
 		chest1.lay(weapon);
         chest2.lay(potion1);
         chest3.lay(artifact1);
@@ -53,6 +53,7 @@ public class Main {
         {0,9},{1,9},{2,9},{3,9},{4,9},      {6,9},{7,9},{8,9},{9,9}};
         
         int[][] heroPos = {{hero.getX(), hero.getY()}};
+        int[][] evilPos = {{evil.getX(), evil.getY()}};
         int[][] enemy = {
         {enemy1.getX(), enemy1.getY()}, 
         {enemy2.getX(), enemy2.getY()}, 
@@ -65,17 +66,13 @@ public class Main {
         {chest4.getPosX(), chest4.getPosY()}, 
         {chest5.getPosX(), chest5.getPosY()}};
 
-        Dungeon map = new Dungeon(10, 10, wall, heroPos, enemy, chest, chest);
+        Dungeon dungeon = new Dungeon(10, 10, wall, evilPos, chest, enemy, heroPos);
 
         // Lancement du jeu
 		InOut inOut = new InOut();
 		Scanner in = new Scanner (System.in);
-        Game game = new Game(hero, evil, enemy1, enemy2, enemy3, enemyList, chest1, chest2, chest3, chest4, chest5, chestList, weapon, artifact1, artifact2, potion1, potion2, in, inOut, map, false);
+        Game game = new Game(hero, evil, enemy1, enemy2, enemy3, enemyList, chest1, chest2, chest3, chest4, chest5, chestList, weapon, artifact1, artifact2, potion1, potion2, in, inOut, dungeon);
+        dungeon.showMap(hero.getX(), hero.getY());
 		game.start();
-		System.out.println("Hero1 X : " + hero.getX());
-		System.out.println("Hero1 Y : " + hero.getY());
-		game.playerMove(in, hero);
-		System.out.println("Hero1 X : " + hero.getX());
-		System.out.println("Hero1 Y : " + hero.getY());
     }
 }
