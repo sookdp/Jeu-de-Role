@@ -221,7 +221,7 @@ public class Game {
     }
 
     public void start() {
-        inOut.start ();
+        inOut.start (in);
         while(gameOver == false){
             inOut.playerChoice(in, hero,this);
         }
@@ -336,15 +336,92 @@ public class Game {
 					break;
 				case 2 :
 					choiceMove = true;
-					hero.down();
+                    hero.down();
+                    if(dungeon.isWall(hero.getX(), hero.getY() - 1) == true){
+                        System.out.println("---------------------------------------------------------------------------------------\n"+
+                                            "Vous êtes face à un mur, veuillez choisir autre direction\n" +
+                                            "---------------------------------------------------------------------------------------\n");
+                        break;
+                    }
+                    hero.up();
+                    System.out.println("---------------------------------------------------------------------------------------\n"+
+                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getX()+ "\n" +
+                                        "---------------------------------------------------------------------------------------\n");
+					if (dungeon.isChest(hero.getX(), hero.getY()) == true) {
+                        inOut.crossChest(in, hero, chest1);
+                    }
+                    else if (dungeon.isEnemy(hero.getX(), hero.getY()) == true) {
+                        Character enemy = whichEnemy(hero.getX(), hero.getY(), enemyList);
+                        fight(hero, enemy, inOut);
+                    }
+                    else if (dungeon.isEvil(hero.getX(), hero.getY()) == true) {
+                        System.out.println("---------------------------------------------------------------------------------------\n"+
+                                        "Vous allez affronter un méchant \n" +
+                                        "---------------------------------------------------------------------------------------\n");
+                        fight(hero, evil, inOut);
+                        if (evil.getIsAlive() == false) {
+                            gameOver = true;
+                        }
+                    }
+				
 					break;
 				case 3 :
 					choiceMove = true;
 					hero.left();
+                    if(dungeon.isWall(hero.getX()-1, hero.getY()) == true){
+                        System.out.println("---------------------------------------------------------------------------------------\n"+
+                                            "Vous êtes face à un mur, veuillez choisir autre direction\n" +
+                                            "---------------------------------------------------------------------------------------\n");
+                        break;
+                    }
+                    System.out.println("---------------------------------------------------------------------------------------\n"+
+                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getX()+ "\n" +
+                                        "---------------------------------------------------------------------------------------\n");
+					if (dungeon.isChest(hero.getX(), hero.getY()) == true) {
+                        inOut.crossChest(in, hero, chest1);
+                    }
+                    else if (dungeon.isEnemy(hero.getX(), hero.getY()) == true) {
+                        Character enemy = whichEnemy(hero.getX(), hero.getY(), enemyList);
+                        fight(hero, enemy, inOut);
+                    }
+                    else if (dungeon.isEvil(hero.getX(), hero.getY()) == true) {
+                        System.out.println("---------------------------------------------------------------------------------------\n"+
+                                        "Vous allez affronter un méchant \n" +
+                                        "---------------------------------------------------------------------------------------\n");
+                        fight(hero, evil, inOut);
+                        if (evil.getIsAlive() == false) {
+                            gameOver = true;
+                        }
+                    }
 					break;
 				case 4 :
 					choiceMove = true;
 					hero.right();
+                    if(dungeon.isWall(hero.getX() + 1, hero.getY()) == true){
+                        System.out.println("---------------------------------------------------------------------------------------\n"+
+                                            "Vous êtes face à un mur, veuillez choisir autre direction\n" +
+                                            "---------------------------------------------------------------------------------------\n");
+                        break;
+                    }
+                    System.out.println("---------------------------------------------------------------------------------------\n"+
+                                        "Vous êtes maintenant à la position : \n" + "X : " + hero.getX()+ "\n" + "Y : " + hero.getX()+ "\n" +
+                                        "---------------------------------------------------------------------------------------\n");
+					if (dungeon.isChest(hero.getX(), hero.getY()) == true) {
+                        inOut.crossChest(in, hero, chest1);
+                    }
+                    else if (dungeon.isEnemy(hero.getX(), hero.getY()) == true) {
+                        Character enemy = whichEnemy(hero.getX(), hero.getY(), enemyList);
+                        fight(hero, enemy, inOut);
+                    }
+                    else if (dungeon.isEvil(hero.getX(), hero.getY()) == true) {
+                        System.out.println("---------------------------------------------------------------------------------------\n"+
+                                        "Vous allez affronter un méchant \n" +
+                                        "---------------------------------------------------------------------------------------\n");
+                        fight(hero, evil, inOut);
+                        if (evil.getIsAlive() == false) {
+                            gameOver = true;
+                        }
+                    }
 					break;
 				default :
 					System.out.println("Merci de saisir une autre valeur");

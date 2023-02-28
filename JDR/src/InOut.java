@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
 public class InOut {
-	public void start () {
+	Scanner input = new Scanner (System.in);
+	public void start (Scanner in) {
 		boolean game = false;
-		Scanner input = new Scanner (System.in);
 		while (game == false) {
+			game = true;
 			System.out.println("--------------------------------------------------------------------------------------------\n"+
 								"Bonjour à toi ! Nous avons besoin de toi pour affronter des monstres et ennemies.\n"+
 								"-------------------------------------------------------------------------------------------\n");
 			System.out.println("Es-tu prêt à les affronter ? Oui ou Non ?");
 			String answer = input.next();
-			input.close();
 			if (answer.equals("Oui")) {
 				System.out.println("-----------------------------------------------------------------------------------------\n" + 
 									"Tu as fait le bon choix ! Je vais maintenant de t'expliquer le principe du jeu.\n"+
@@ -22,7 +22,7 @@ public class InOut {
 									+ "et artefacts. À l'aide des potion tu pourras gagner des points de vie, de l'expérience\n"
 									+ "et pleins d'autres choses\n"
 									+ "---------------------------------------------------------------------------------------\n");
-				game = true;
+				
 			}
 			if (answer.equals ("Non")) {
 				System.out.println("-----------------------------------------------------------------------------------------\n"
