@@ -8,7 +8,7 @@ Le principe est simple, tu as une carte sur laquelle tu peux te déplacer.
 et artefacts.
 - À l'aide des potion tu pourras gagner des points de vie, de l'expérience
 et pleins d'autres choses...  
-- Tu auras aussi accès à ton inventaire et tu pourras ainsi consulter les armes, les potions et les artefacts en ta possession.
+- Tu auras aussi accès à ton inventaire et tu pourras ainsi consulter les armes, les potions et les artefacts en ta possession.  
 X X X X X X X X X X  
 X X X . . . . . X X  
 X . . . X E . . X X  
