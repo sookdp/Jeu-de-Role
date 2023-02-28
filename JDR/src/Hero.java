@@ -1,5 +1,6 @@
 import java.util.*;
 public class Hero extends Character{
+	Scanner in = new Scanner (System.in);
 	List<Object> weaponList = new ArrayList<Object>();
 	List<Object> potionList = new ArrayList<Object>();
 	List<Object> artifactList = new ArrayList<Object>();
@@ -242,7 +243,6 @@ public class Hero extends Character{
 	}
 	@Override
 	public void attack(Character enemy) {
-		Scanner in = new Scanner (System.in);
 		boolean choice = false;
 		int heroChoice;
 		while (!choice){

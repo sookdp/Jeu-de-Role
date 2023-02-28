@@ -2,7 +2,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args){
 		//Création des personnages
-        Hero hero = new Hero("Hero", 5, 9, 5, 5, 4, 5, 0);
+        Hero hero = new Hero("Hero", 5, 9, 5, 5, 4, 5, 1);
         Character evil = new Character("The evil", 5, 0, 10, 15, 15, 15, 3);
         Character enemy1 = new Character("Monster 1", 4, 7, 5, 10, 10, 10, 0);
         Character enemy2 = new Character("Monster 2", 2, 5, 5, 10, 10, 10, 1);

@@ -9,19 +9,10 @@ et artefacts.
 - À l'aide des potion tu pourras gagner des points de vie, de l'expérience
 et pleins d'autres choses...  
 - Tu auras aussi accès à ton inventaire et tu pourras ainsi consulter les armes, les potions et les artefacts en ta possession.  
-X X X X X X X X X X  
-X X X . . . . . X X  
-X . . . X E . . X X  
-X . . E C . . . X X  
-X . . . . . . E X X  
-EvC . . X X . . C H  
-X . . . X X . . X X  
-X . . . . . C . X X  
-X X C . . . . . X X  
-X X X X X X X X X X  
+![Légende](https://media.discordapp.net/attachments/1017098342653775922/1080137120615776297/Sans_nom_3.jpg)
 La carte se présente comme ceci :  
 - "X" correspond aux mur  
 - "E" correspond aux ennemis  
-- "Ev" coorespond au méchant que le héro devra combattre pour gagner la partie  
+- "B" coorespond au méchant que le héro devra combattre pour gagner la partie dans notre matrice cela correspond à "Ev"
 - "C" désigne les coffres disposés de part et d'autre  
-- "." correspond au voies possibles
+- Les cases vides correspondent au voies possibles

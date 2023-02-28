@@ -253,41 +253,39 @@ public class Game {
             fighter_2 = hero;   
         }
         System.out.println();     
-        System.out.println("--------------------------------------------------------------------\n"+
+        System.out.println( "---------------------------------------------------------------------------------------\n"+
                             "Un combat vient de se lancer, "+ fighter_1.getName() +" va commencer !\n"+
-                            "--------------------------------------------------------------------");
-        System.out.println(); 
-
+                            "---------------------------------------------------------------------------------------");
+        System.out.println();
         while(hero.getIsAlive() == false || enemy.getIsAlive() == false){
             int round = 1;
             if(round % 2 == 0){
-                // demander au joueur s'il veut attaquer
-                fighter_2.attack(fighter_1);
-                fighter_2.getIsAlive();
-                fighter_1.setIsAlive(gameOver);
+                fighter_1.attack(fighter_2); // demande au joueur s'il veut attaquer
+                fighter_2.setIsAlive(false);
 
             }
             else{ 
-                fighter_1.attack(fighter_2);
-                fighter_2.setIsAlive(gameOver);
+                fighter_2.attack(fighter_1);
+                fighter_1.setIsAlive(false);
             }
             ++round;
+            System.out.println("Round : " + round + "\n");
         }
 
-        if(hero.getIsAlive() == false){
+        if(hero.getLife() == 0){
             System.out.println(); 
-            System.out.println("--------------------------------------------------------------------\n"+ 
+            System.out.println( "---------------------------------------------------------------------------------------\n"+ 
                                 "Vous avez perdu... GAME OVER\n"+
-                                "--------------------------------------------------------------------\n");
+                                "---------------------------------------------------------------------------------------\n");
             System.out.println();             
             gameOver = true;
         }
 
         else{
             System.out.println(); 
-            System.out.println("--------------------------------------------------------------------\n"+ 
+            System.out.println( "---------------------------------------------------------------------------------------\n"+ 
                                 "A vous la victoire !\n"+
-                                "--------------------------------------------------------------------\n");
+                                "---------------------------------------------------------------------------------------\n");
             System.out.println();             
             hero.setExp(hero.getExp() +1);
             enemy.setX(0);

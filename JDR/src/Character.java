@@ -72,7 +72,7 @@ public class Character {
 		this.exp = exp;
 	}
 	public void setIsAlive (boolean alive){
-		this.alive = alive;
+		if (this.getLife() <= 0) this.alive = false;
 	}
 	public void fight(Character victim) {
 		int newLife = victim.getLife() - getAttack() + victim.getDefense();
